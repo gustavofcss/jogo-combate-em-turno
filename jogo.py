@@ -13,14 +13,19 @@ class Personagem:
     def get_nivel(self):
         return self.__nivel
     
+    def exibir_detalhes(self):
+        return f"Nome: {self.get_nome()}\nVida: {self.get_vida()}\nNível: {self.get_nivel()}"
     
 class Heroi(Personagem):
     def __init__(self, nome, vida, nivel, habilidade):
         super().__init__(nome, vida, nivel)
         self.__habilidade = habilidade
 
-        def get_habilidade(self):
+    def get_habilidade(self):
             return self.__habilidade
+        
+    def exibir_detalhes(self):
+            return f"{super().exibir_detalhes()}\nHabilidade: {self.get_habilidade()}\n"
         
 class Inimigo(Personagem):
     def __init__(self, nome, vida, nivel, tipo):
@@ -29,3 +34,11 @@ class Inimigo(Personagem):
 
     def get_tipo(self):
         return self.__tipo
+    
+    def exibir_detalhes(self):
+            return f"{super().exibir_detalhes()}\nTipo: {self.get_tipo()}\n"
+    
+heroi = Heroi("Arqueiro", 100, 5, "Tiro Certeiro")
+print(heroi.exibir_detalhes())
+inimigo = Inimigo("Goblin", 50, 3, "Verde")  
+print(inimigo.exibir_detalhes())
