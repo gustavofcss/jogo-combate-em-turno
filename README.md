@@ -1,4 +1,4 @@
-````markdown
+
 # 🗡️ Jogo de Combate em Turnos (Python)
 
 Projeto simples de um jogo de combate em turnos feito em Python, com foco em praticar conceitos de Programação Orientada a Objetos (POO).
