@@ -1,0 +1,1 @@
+ dano = random.randint(self.get_nivel() * 5, self.get_nivel() * 8)

@@ -1,4 +1,8 @@
 import random
+import os
+
+def limpar_tela():
+    os.system("cls" if os.name == "nt" else "clear")
 
 class Personagem:
     def __init__(self, nome, vida, nivel):
@@ -39,7 +43,7 @@ class Heroi(Personagem):
     def exibir_detalhes(self):
             return f"{super().exibir_detalhes()}\nHabilidade: {self.get_habilidade()}\n"
     def ataque_especial(self, alvo):
-        dano = random.randint(self.__nivel * 5, self.__nivel * 8)
+        dano = random.randint(self.get_nivel() * 5, self.get_nivel() * 8)
         alvo.receber_ataque(dano)
         print(f"{self.get_nome()} usou {self.get_habilidade()} em {alvo.get_nome()} causando {dano} de dano!")
         
@@ -68,17 +72,24 @@ class Jogo:
 
              input("Pressione Enter para atacar...")
              escolha = input("Escolha (1 - Ataque Normal, 2 - Ataque Especial): ")
+             
+             limpar_tela()
 
              if escolha == "1":
                  self.heroi.atacar(self.inimigo)
              elif escolha == "2":
                  self.heroi.ataque_especial(self.inimigo)
              else:
-                  print("Escolha inválida. Escolha novamente.")
+                  print("Escolha inválida. O Herói perdeu a vez.")
+             
              if self.inimigo.get_vida() > 0:
-                  self.inimigo.atacar(self.heroi) 
+                  self.inimigo.atacar(self.heroi)
+                  input("\nPressione Enter para continuar...")
+                  limpar_tela()
+ 
         if self.heroi.get_vida() > 0:
              print("\nParabéns! Você venceu a batalha!")
-        else:             print("\nVocê foi derrotado. Tente novamente!")          
+        else:             print("\nVocê foi derrotado. Tente novamente!")
+                  
 jogo = Jogo()
 jogo.inciar_batalha()
